@@ -3,14 +3,28 @@
     <head>
         <title>BEST-BURGERS</title>
         <meta charset="utf-8"/>
+				<!--<link rel="stylesheet" type="text/css" href="css/reset.css">-->
+				<link rel="stylesheet" type="text/css" href="css/style.css">
     </head>
     <body>
 			<main>
-				<h1>Welcome to BurgerOnline</h1>
-				<section>
-					<!--Part for selecting burgers-->
+				<section id="header">
+				<img id="headerpicture" src=http://thelowbrowmpls.com/wp-content/uploads/2014/06/thelowbrow_menuheaders_burgers.png alt="Span">
+				<div id = "headline"><h1>Welcome to BurgerOnline</h1></div>
+
+				</section>
+
+				<section id="selectburger">
+					<!-- Part for selecting burgers-->
 					<h2>Select burger</h2>
 						<p>Choose one of the burgers listed below:</p>
+
+						<div class="wrapper">
+					   <div class="box a">A</div>
+					   <div class="box b">B</div>
+					   <div class="box c">C</div>
+					   <div class="box d">D</div>
+ 				 		</div>
 
 					<table>
 						<thead>
@@ -22,34 +36,34 @@
 						</thead>
 						<tbody>
 								<td>
-									<img src=https://www.thedailymeal.com/sites/default/files/2014/09/25/cheeseburger_1.jpg alt="Span" width = "300">
+									<img src=https://ws.mcdonalds.fr/media/e2/4f/47/e24f47157cd109bceb0a2c0b27947cad75436764 alt="Span" width = "350">
 								</td>
 								<td>
-									<img src=https://i0.wp.com/www.onegreenplanet.org/wp-content/uploads/2017/05/mcdonalds.jpg alt="Span" width = "300">
+									<img src=https://d1nqx6es26drid.cloudfront.net/app/uploads/2017/05/25161146/Veggie-Crunch-burger-vmay22.png alt="Span" width = "350">
 								</td>
 								<td>
-									<img src=https://www.mcdonalds.co.za/sites/default/files/product/McFeats-Spicy.png alt="Span" width = "300">
+									<img src=https://www.mcdonalds.co.za/sites/default/files/product/McFeats-Spicy.png alt="Span" width = "320">
 								</td>
 						</tbody>
 						<tfoot>
 							<td>
 								<ul>
 									<li>350 kCal</li>
-									<li>Contains lactose</li>
-									<li>Contains gluten</li>
+									<li>Contains <span class="lactose">lactose </span></li>
+									<li>Contains <span class="gluten"> gluten</span></li>
 								</ul>
 							</td>
 							<td>
 								<ul>
 									<li>400 kCal</li>
-									<li>Contains gluten</li>
+									<li>Contains <span class="gluten"> gluten</span></li>
 								</ul>
 							</td>
 							<td>
 								<ul>
 									<li>600 kCal</li>
-									<li>Contains gluten</li>
-									<li>Contains lactose</li>
+									<li>Contains <span class="gluten"> gluten</span></li>
+									<li>Contains <span class="lactose">lactose </span></li>
 									<li>Two slices of meat, extra spicy</li>
 								</ul>
 							</td>
@@ -57,13 +71,11 @@
 					</table>
 				</section>
 
-				<section> <!--ha id på alla sections??-->
-					<!--Part for costumer information-->
-					<h2>Costumer information</h2>
+				<section id="customerinfo">
+					<!--Part for customer information-->
+					<h2>Customer information</h2>
 						<p>This is where you provide necerssary information</p>
 					<h3>Delivery information:</h3>
-
-					<section id="contact"><!--ska jag ha ett id på denna section eller är det bara en sectin för hela contact??-->
 						<form>
 									<p>
 										<label for="fullname">Full name</label><br>
@@ -81,10 +93,8 @@
 										<label for= "house">House</label><br>
 										<input type="text" id="house" name="ho" required = "required" placeholder = "House number">
 									</p>
-						</form>
-					</section>
-					<section>
-						<p>
+
+						<div>
 					   <label for="payment">Payment options</label><br>
 					   <select id="payment" name="pay">
 					       <option>Debit card</option>
@@ -92,29 +102,18 @@
 					       <option>PayPal</option>
 					       <option>Bank payment</option>
 					   </select>
-						</p>
-					</section>
-					<section>
-						<p>
-								<form action="">
+					 </div>
+						<div>
 									<label>Gender</label><br>
-									<!--Notice the name attribute must be the same for eacb radio button-->
-									<!--<br> = line break-->
+									<!--Notice the name attribute must be the same for eacb radio button--><!--<br> = line break-->
 								  <input checked ="checked" type="radio" name="gender" value="male"> Male<br>
 								  <input type="radio" name="gender" value="female"> Female<br>
 								  <input type="radio" name="gender" value="other"> Other
-
 								</form>
-						</p>
+						</div>
 					</section>
-				</section>
-				<section> <!--utanför eller innanför main?-->
-						<form> <!--hur lägga utanför form-->
-						<!--Ska något med span vara med?-->
-						<button type ="submit"><img src=https://thumbs.dreamstime.com/b/green-tick-checkbox-vector-illustration-79739427.jpg width= "30"> Place order</button>
-					</form>
-				</section>
 
+						<button class="button" type ="submit"><img src=https://thumbs.dreamstime.com/b/green-tick-checkbox-vector-illustration-79739427.jpg width= "30"> Place order</button>
 			</main>
 				<hr>
 					<footer>2018</footer>
