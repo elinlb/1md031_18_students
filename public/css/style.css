@@ -1,0 +1,120 @@
+﻿/* Your comment goes here */
+
+@import url("https://fonts.googleapis.com/css?family=Droid+Serif|Share+Tech+Mono");
+
+body {
+    font-family: "Droid Serif", sans-serif;
+    font-size: 1em;
+}
+
+.lactose {
+	font-weight: bold;
+}
+
+.gluten {
+	font-weight: bold;
+}
+
+#selectburger {
+    background-color: black;
+	color: white;
+	border: 2px dotted white;
+	margin: 0 2% 0 0;
+	padding: 0 2% 0;
+}
+
+#customerinfo {
+ 	border: 2px dotted black;
+	margin: 0 2% 0 0;
+	padding: 0 2% 2%;
+}
+
+#header{
+	margin: 2% 2% 0 0;
+	height: 50vh;
+	overflow: hidden;
+}
+
+#headline{
+	position: absolute;
+	margin-top: -50vh;
+	font-size: 1.5em;
+}
+
+#headerpicture{
+	opacity: 0.8;
+	width: 100%;
+  height: 100%;
+
+}
+
+button:hover {
+	background-color: green;
+}
+
+.button {
+	background-color: yellow;
+	margin: 2% 0 1% 0;
+}
+
+/*table {
+	width: 80%;
+	vertical-align: middle;
+	0 2% 0 0;
+}*/
+
+#wrapper {
+     display: grid;
+     grid-template-columns: 33.33% 33.33% 33.33%;
+     grid-template-rows: auto;
+     text-align: center;
+     /*color: #444;*/
+ }
+
+ ul {
+   text-align: left;
+   list-style: inside;
+ }
+
+.flexcontainer {
+  display:flex;
+  flex-direction: row;
+}
+
+/* .a {
+   background-color: red;
+    grid-column: 1;
+    grid-row: 1;
+    text-align: center;
+ }
+
+
+ .b {
+   grid-column: 2;
+   grid-row: 1;
+   text-align: center;
+ }
+
+ .c {
+   grid-column: 3;
+   grid-row: 1;
+   text-align: center;
+ }
+
+ .d {
+    grid-column: 1;
+    grid-row: 2;
+    text-align: center;
+ }
+
+ .e {
+    grid-column: 2;
+    grid-row: 2;
+    text-align: center;
+ }
+
+ .f {
+    grid-column: 3;
+    grid-row: 2;
+    text-align: center;
+ }*/
