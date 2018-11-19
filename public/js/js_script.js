@@ -11,5 +11,4 @@
 // Objects are then instantiated using the new keyword
 var ord = new MenuItem('Cheeseburger', '400', 'gluten', 'lactose');
 
-console.log( ord.nameAndCalories() );
-*/
+console.log( ord.nameAndCalories() );*/

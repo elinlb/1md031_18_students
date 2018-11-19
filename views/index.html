@@ -1,18 +1,25 @@
 <!DOCTYPE html>
 <html lang="en">
     <head>
+
         <title>BEST-BURGERS</title>
         <meta charset="utf-8"/>
 				<!--<link rel="stylesheet" type="text/css" href="css/reset.css">-->
 				<link rel="stylesheet" type="text/css" href="css/style.css">
+        <script src="/socket.io/socket.io.js" defer></script>
         <script type="text/javascript" src="js/menu.js"></script>
 				<script src="js/js_script.js" defer></script>
 				<script src="https://vuejs.org/js/vue.js" defer></script>
 				<script src="js/vue_script.js" defer></script>
 
+
+        <link rel="stylesheet" href="css/deli-very.css">
+
     </head>
     <body>
-			<main>
+
+        <main>
+        <div id="orderPage">
 
 				<section id="header"> <!--ska jag använda section eller något annat??-->
 				<img id="headerpicture" src=http://thelowbrowmpls.com/wp-content/uploads/2014/06/thelowbrow_menuheaders_burgers.png alt="Span">
@@ -20,9 +27,10 @@
 				<div id = "headline"><h1>Welcome to BurgerOnline</h1></div>
 				</section>
 
+
 				<section id="selectburger">
 					<!-- Part for selecting burgers-->
-          <div id="myID">
+
 					<h2>Select burger</h2>
 						<p>Choose one of the burgers listed below:</p>
             <div class="flexcontainer">
@@ -32,7 +40,7 @@
                 <ul>
                   <li>{{item.calories}} kCal</li>
                 <li> Contains <span class="lactose">lactose</span> and<span class="gluten"> gluten</span></li><br>
-                 <input type="checkbox" name="checkbox1" value="hej"> Order {{item.name}}<br> <!--Ska alla knappar heta olika, kommer det bli problem annars när man kollar ifall rutorna är ikryssade eller inte??-->
+                 <input type="checkbox" name="checkbox1" v-bind:value="item.name" v-model= "nameOrderedBurger"> Add {{item.name}}<br> <!--Ska alla knappar heta olika, kommer det bli problem annars när man kollar ifall rutorna är ikryssade eller inte??-->
               </ul>
               </ol>
 
@@ -42,7 +50,7 @@
                 <ul>
                   <li>{{item.calories}} kCal</li>
                 <li> Contains <span class="lactose">lactose</span></li><br>
-                <input type="checkbox" name="checkbox1" value="hej"> Order {{item.name}}<br>
+                <input type="checkbox" name="checkbox2" v-bind:value="item.name" v-model = "nameOrderedBurger"> Add {{item.name}}<br>
               </ul>
               </ol>
 
@@ -52,7 +60,7 @@
                 <ul>
                   <li>{{item.calories}} kCal</li>
                 <li> Contains<span class="gluten"> gluten</span></li><br>
-                <input type="checkbox" name="checkbox1" value="hej"> Order {{item.name}}<br>
+                <input type="checkbox" name="checkbox1" v-bind:value="item.name" v-model = "nameOrderedBurger"> Add {{item.name}}<br>
               </ul>
               </ol>
 
@@ -61,45 +69,14 @@
                 <img v-bind:src="item.img" alt="Span"width = "320" height = "210"><br>
                 <ul>
                   <li>{{item.calories}} kCal</li> <br>
-                  <input type="checkbox" name="checkbox1" value="hej"> Order {{item.name}}<br>
+                  <input type="checkbox" name="checkbox1" v-bind:value="item.name" v-model = "nameOrderedBurger"> Add {{item.name}}<br>
               </ul>
               </ol>
 
             </div>
-          </div>
 
-					<!--div id= "wrapper" v-for= "menuitem in menu">
-								<div class = "box a"><h3>hej</h3></div>
-								<div class = "box b"><h3>hej</h3></div>
-								<div class = "box c"><h3>hej</h3></div>
-
-								<div class = "box d"> <img src=https://images.pexels.com/photos/1269665/pexels-photo-1269665.jpeg?auto=compress&cs=tinysrgb&dpr=2&h=350 alt="Span"width = "320" height = "210"></div>
-								<div class= "box e"> <img src=https://images.pexels.com/photos/327135/pexels-photo-327135.jpeg?auto=compress&cs=tinysrgb&dpr=2&h=350 alt="Span" width = "320" height = "210"></div>
-								<div class ="box f"><img src=https://images.pexels.com/photos/1563045/pexels-photo-1563045.jpeg?auto=compress&cs=tinysrgb&dpr=2&h=650&w=940 alt="Span" width = "320" height = "210"></div>
-
-								<div class ="box g">
-								<ul>
-                  <li>{{menuitem.calories}}
-									<li>Contains <span class="gluten"> gluten</span></li>
-									<li>Contains <span class="lactose">lactose </span></li>
-								</ul>
-								</div>
-							<div class = "box h">
-								<ul>
-									<li>Contains <span class="gluten"> gluten</span></li>
-									<li>Contains <span class="lactose">lactose </span></li>
-								</ul>
-							</div>
-							<div class ="box i">
-								<ul>
-
-									<li>Contains <span class="gluten"> gluten</span></li>
-									<li><span class="lactose">Lactose</span> free</li>
-									<li>Extra spicy</li>
-								</ul>
-							</div>
-					</div-->
 				</section>
+
 
 				<section id="customerinfo">
 					<!--Part for customer information-->
@@ -109,45 +86,74 @@
 						<form>
 									<p>
 										<label for="fullname">Full name</label><br>
-										<input type="text" id="fullname" name="fn" required = "required" placeholder = "First- and Last name">
+										<input type="text" id="fullname" name="fn" required = "required" v-model="orderDetails[0]" placeholder = "First- and Last name" >
 								</p>
 								<p>
 										<label for= "email">E-mail</label><br>
-										<input type="text" id="email" name="em" required = "required" placeholder = "E-mail address">
+										<input type="text" id="email" name="em" required = "required" v-model="orderDetails[1]" placeholder = "E-mail address">
 								</p>
-								<p>
+							<!--	<p>
 										<label for= "street">Street</label><br>
-										<input type="text" id="street" name="st" required = "required" placeholder = "Street name">
+										<input type="text" id="street" name="st" required = "required" v-model="orderDetails[2]" placeholder = "Street name">
 								</p>
 								<p>
 										<label for= "house">House</label><br>
-										<input type="text" id="house" name="ho" required = "required" placeholder = "House number">
-									</p>
+										<input type="text" id="house" name="ho" required = "required" v-model="orderDetails[3]" placeholder = "House number">
+									</p>-->
 
 						<div>
 					   <label for="payment">Payment options</label><br>
-					   <select id="payment" name="pay">
+					   <select id="payment" name="pay" v-model="orderDetails[4]">
 					       <option>Debit card</option>
-					       <option selected="selected" >Swish</option>
+					       <option selected="selected">Swish</option>
 					       <option>PayPal</option>
 					       <option>Bank payment</option>
 					   </select>
-					 </div>
+					 </div><br>
 						<div>
 									<label>Gender</label><br>
-									<!--Notice the name attribute must be the same for eacb radio button--><!--<br> = line break-->
-								  <input checked ="checked" type="radio" name="gender" value="male"> Male<br>
-								  <input type="radio" name="gender" value="female"> Female<br>
-								  <input type="radio" name="gender" value="other"> Other
+								  <input checked ="checked" type="radio" name="gender" value="male" v-model="orderDetails[5]"> Male<br>
+								  <input type="radio" name="gender" value="female" v-model="orderDetails[5]"> Female<br>
+								  <input type="radio" name="gender" value="other" v-model="orderDetails[5]"> Other
 								</form>
 						</div>
+
+            <h1> Click in the map! </h1>
+            <a href="/dispatcher" target="_blank">Open dispatcher in new window</a>.
+            <div class="view-box">
+              <div id="dots" v-on:click="displayOrder">
+                  <div
+                    v-for="(order, key) in orders"
+                    v-bind:style="{ left: order.details.x + 'px', top: order.details.y + 'px'}">
+                    {{key}}
+                  </div>
+              </div>
+            </div>
+
 					</section>
-            <div id ="orders">
-						<button v-on: click ="placeOrder(key)" class="button" type ="submit"><img src=https://thumbs.dreamstime.com/b/green-tick-checkbox-vector-illustration-79739427.jpg width= "30"> Place order</button>
+
+          <!--ska man lägga till addOrder här-->
+          <button v-on:click ="placeOrder('info'), addOrder" class="button" type ="submit"><img src=https://thumbs.dreamstime.com/b/green-tick-checkbox-vector-illustration-79739427.jpg width= "30"> Place order</button><br>
+            <div>
+                <h3>Order confirmation</h3>
+                <h4>Costumer details:</h4>
+                Name:{{orderDetails[0]}}<br>
+                Email: {{orderDetails[1]}}<br>
+                Gender: {{orderDetails[5]}}<br>
+                <!--Delivery address: {{orderDetails[2]}}<br>
+                House no:{{orderDetails[3]}}<br>-->
+                Payment option: {{orderDetails[4]}}<br>
+            </div>
+
+            <h4>Order summary</h4>
+            <ul v-if="nameOrderedBurger.length > 0">
+                <li v-for="burger in nameOrderedBurger">{{ burger }}</li>
+            </ul>
+
           </div>
-    	</main>
+          </main>
 				<hr>
 					<footer>2018</footer>
 				</hr>
-    </body>
+   </body>
 </html>
