@@ -7,15 +7,6 @@
   }
 })*/
 
-
-/*var vm = new Vue({
-  el: '#myID',
-  data: {
-    burgeritem: "Choose burger",
-    menu: food
-  }
-})*/
-
 var socket = io();
 
 function evaluateCheckboxes(){
