@@ -9,9 +9,9 @@
 
 var socket = io();
 
-function evaluateCheckboxes(){
+/*function evaluateCheckboxes(){
   return; //what should I display here?
-}
+*/
 
 var vm = new Vue({
   el: '#orderPage',
@@ -21,49 +21,40 @@ var vm = new Vue({
     orderDetails: [],
     nameOrderedBurger: [],
     orders: {},
+    details: {x: 0, y: 0},
+    lastorder: 0
   },
   created: function () {
     socket.on('initialize', function (data) {
       this.orders = data.orders;
     }.bind(this));
-
-    socket.on('currentQueue', function (data) {
-      this.orders = data.orders;
-    }.bind(this));
   },
   methods: {
-    placeOrder: function (value){
+  /*  placeOrder: function (value){
         this.nameOrderedBurger = evaluateCheckboxes();
-        /*console.log('Clicked '+value);*/
-    },
+        /*console.log('Clicked '+value);
+    },*/
     getNext: function () {
-      var lastOrder = Object.keys(this.orders).reduce(function (last, next) {
-        return Math.max(last, next);
-      }, 0);
-      return lastOrder + 1;
+      this.lastorder = this.lastorder + 1
+      return this.lastorder;
     },
     addOrder: function (event) {
-      var offset = {x: event.currentTarget.getBoundingClientRect().left,
-                    y: event.currentTarget.getBoundingClientRect().top};
+      if (this.nameOrderedBurger.length !==0){
       socket.emit('addOrder', { orderId: this.getNext(),
-                                details: { x: event.clientX - 10 - offset.x,
-                                           y: event.clientY - 10 - offset.y },
-                                orderItems: ["Beans", "Curry"]
+                                details: this.details,
+                                orderItems: vm.nameOrderedBurger,
                               });
+      }                        
     },
 
     displayOrder: function (event) {
       var offset = {x: event.currentTarget.getBoundingClientRect().left,
                     y: event.currentTarget.getBoundingClientRect().top};
-      socket.emit('addOrder', { orderId: ['T'],
-                                details: { x: event.clientX - 10 - offset.x,
-                                           y: event.clientY - 10 - offset.y },
-                                orderItems: ["Beans", "Curry"]
-                              });
+      this.details = { x: event.clientX - 10 - offset.x,
+                      y: event.clientY - 10 - offset.y };
+        console.log(this.orders);
     }
 
   }
 
 })
-
-// ska man göra ett nytt vue-objekt för att skicka meddelanden?
